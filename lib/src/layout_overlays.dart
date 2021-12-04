@@ -124,7 +124,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
     super.initState();
 
     if (widget.showOverlay) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) => showOverlay());
+      WidgetsBinding.instance?.addPostFrameCallback((_) => showOverlay());
     }
   }
 
@@ -167,14 +167,12 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   }
 
   void addToOverlay(OverlayEntry overlayEntry) async {
-    if (!mounted) {
-      if (ShowCaseWidget.of(context)?.context != null &&
-          Overlay.of(ShowCaseWidget.of(context)!.context) != null) {
-        Overlay.of(ShowCaseWidget.of(context)!.context)!.insert(overlayEntry);
-      } else {
-        if (Overlay.of(context) != null) {
-          Overlay.of(context)!.insert(overlayEntry);
-        }
+    if (ShowCaseWidget.of(context)?.context != null &&
+        Overlay.of(ShowCaseWidget.of(context)!.context) != null) {
+      Overlay.of(ShowCaseWidget.of(context)!.context)!.insert(overlayEntry);
+    } else {
+      if (Overlay.of(context) != null) {
+        Overlay.of(context)!.insert(overlayEntry);
       }
     }
   }
