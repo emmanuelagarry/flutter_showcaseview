@@ -193,9 +193,11 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
   ///
   void showOverlay() {
     final activeStep = ShowCaseWidget.activeTargetWidget(context);
-    setState(() {
-      _showShowCase = activeStep == widget.key;
-    });
+    if (mounted) {
+      setState(() {
+        _showShowCase = activeStep == widget.key;
+      });
+    }
 
     if (activeStep == widget.key) {
       _slideAnimationController.forward();
